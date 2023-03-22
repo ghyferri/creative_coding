@@ -1,25 +1,24 @@
 import './styles/reset.css';
 import './styles/style.css';
+import data from '../si.json' assert { type: 'JSON' };
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const questionDisplay = document.querySelector('#questionDisplay');
-const questions = ['are u tired?', 'how are u feeling', 'yes or no'];
-let counter = 0;
 
-questionDisplay.textContent = questions[counter];
+let currentQuestion = data.questions[0];
+questionDisplay.textContent = data.questions[0].questionText;
 
 button1.onclick = () => {
-  console.log('yes');
-  nextQuestion();
+  showNextQuestion(currentQuestion.nextQuestionIdYes);
+  currentQuestion = data.questions[currentQuestion.nextQuestionIdYes];
 };
 
 button2.onclick = () => {
-  console.log('no');
-  nextQuestion();
+  showNextQuestion(currentQuestion.nextQuestonIdNo);
+  currentQuestion = data.questions[currentQuestion.nextQuestonIdNo];
 };
 
-const nextQuestion = () => {
-  counter++;
-  questionDisplay.textContent = questions[counter];
+const showNextQuestion = (id) => {
+  questionDisplay.textContent = data.questions[id].questionText;
 };

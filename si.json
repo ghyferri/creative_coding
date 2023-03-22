@@ -1,0 +1,34 @@
+{
+  "questions":{
+     "0":{
+        "questionText":"Do you have a lot of worries on your mind?",
+        "nextQuestionIdYes":"1",
+        "nextQuestonIdNo":"2"
+     },
+     "1":{
+        "questionText":"Are you stuck with a project or certain idea?",
+        "nextQuestionIdYes":"3",
+        "nextQuestonIdNo":"5"
+     },
+     "2":{
+        "questionText":"Are you currently experiencing any mental discomfort?",
+        "nextQuestionIdYes":"4",
+        "nextQuestonIdNo":"5"
+     },
+     "3":{
+        "questionText":"Do you have/had a full planned schedule today?",
+        "nextQuestionIdYes":"6",
+        "nextQuestonIdNo":"..."
+     },
+     "4":{
+        "questionText":"Are you feeling a little sad?",
+        "nextQuestionIdYes":"7",
+        "nextQuestonIdNo":"8"
+     },
+     "5":{
+        "questionText":"Did you have a difficult day?",
+        "nextQuestionIdYes":"8",
+        "nextQuestonIdNo":"4"
+     }
+  }
+}
