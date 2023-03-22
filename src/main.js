@@ -1,6 +1,6 @@
 import './styles/reset.css';
 import './styles/style.css';
-import data from '../si.json' assert { type: 'JSON' };
+import data from '../questions.json' assert { type: 'JSON' };
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');

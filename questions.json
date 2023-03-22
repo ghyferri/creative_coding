@@ -1,0 +1,108 @@
+{
+   "questions": {
+      "0": {
+         "questionText": "Do you have a lot of worries on your mind?",
+         "nextQuestionIdYes": "1",
+         "nextQuestonIdNo": "2"
+      },
+      "1": {
+         "questionText": "Are you stuck with a project or certain idea?",
+         "nextQuestionIdYes": "3",
+         "nextQuestonIdNo": "5"
+      },
+      "2": {
+         "questionText": "Are you currently experiencing any mental discomfort?",
+         "nextQuestionIdYes": "4",
+         "nextQuestonIdNo": "5"
+      },
+      "3": {
+         "questionText": "Do you have/had a full planned schedule today?",
+         "nextQuestionIdYes": "6",
+         "nextQuestonIdNo": "6"
+      },
+      "4": {
+         "questionText": "Are you feeling a little sad?",
+         "nextQuestionIdYes": "7",
+         "nextQuestonIdNo": "8"
+      },
+      "5": {
+         "questionText": "Did you have a difficult day?",
+         "nextQuestionIdYes": "8",
+         "nextQuestonIdNo": "4"
+      },
+      "6": {
+         "questionText": "Have you been productive today?",
+         "nextQuestionIdYes": "9",
+         "nextQuestonIdNo": "8"
+      },
+      "7": {
+         "questionText": "Have you had any difficulty with sleep or appetite recently?",
+         "nextQuestionIdYes": "11",
+         "nextQuestonIdNo": "11"
+      },
+      "8": {
+         "questionText": "have you already taken a breath of fresh air?",
+         "nextQuestionIdYes": "10",
+         "nextQuestonIdNo": "7"
+      },
+      "9": {
+         "questionText": "Are you able to take breaks during your workday?",
+         "nextQuestionIdYes": "13",
+         "nextQuestonIdNo": "12"
+      },
+      "10": {
+         "questionText": "did you exercise today?",
+         "nextQuestionIdYes": "13",
+         "nextQuestonIdNo": "13"
+      },
+      "11": {
+         "questionText": "Have you noticed any changes in your mood or behavior lately?",
+         "nextQuestionIdYes": "14",
+         "nextQuestonIdNo": "13"
+      },
+      "12": {
+         "questionText": "Do you feel that you have enough time to complete your tasks at work?",
+         "nextQuestionIdYes": "16",
+         "nextQuestonIdNo": "15"
+      },
+      "13": {
+         "questionText": "Did you have a difficult day?",
+         "nextQuestionIdYes": "16",
+         "nextQuestonIdNo": "16"
+      },
+      "14": {
+         "questionText": "Do you know why you are moody?",
+         "nextQuestionIdYes": "17",
+         "nextQuestonIdNo": "16"
+      },
+      "15": {
+         "questionText": "Do you feel stressed?",
+         "nextQuestionIdYes": "18",
+         "nextQuestonIdNo": "19"
+      },
+      "16": {
+         "questionText": "Do you have enough energy to get through the day?",
+         "nextQuestionIdYes": "15",
+         "nextQuestonIdNo": "19"
+      },
+      "17": {
+         "questionText": "Is it something about yourself?",
+         "nextQuestionIdYes": "20",
+         "nextQuestonIdNo": "20"
+      },
+      "18": {
+         "questionText": "Let’s clear our mind together"
+      },
+      "19": {
+         "questionText": "Together we will get even more energy"
+      },
+      "20": {
+         "questionText": "Did you do something about it?",
+         "nextQuestionIdYes": "21",
+         "nextQuestonIdNo": "21"
+      },
+      "21": {
+         "questionText": "Here is a hug"
+      }
+   }
+}
