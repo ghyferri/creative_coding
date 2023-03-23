@@ -12,6 +12,8 @@ let currentQuestion = data.questions[0];
 questionDisplay.textContent = data.questions[0].questionText;
 
 button1.onclick = () => {
+  let beat = new Audio(currentQuestion.audioPath);
+  beat.play();
   showNextQuestion(currentQuestion.nextQuestionIdYes);
   checkLastQuestion(currentQuestion);
 };
