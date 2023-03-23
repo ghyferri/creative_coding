@@ -4,6 +4,8 @@ import data from '../questions.json' assert { type: 'JSON' };
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
+const body = document.querySelector('body');
+
 const questionDisplay = document.querySelector('#questionDisplay');
 
 let currentQuestion = data.questions[0];
@@ -28,5 +30,17 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
+  }
+  switch (question.questionType) {
+    case 'purple':
+      body.style.backgroundColor = 'purple';
+      break;
+    case 'green':
+      body.style.backgroundColor = 'green';
+      break;
+    case 'yellow':
+      body.style.backgroundColor = 'yellow';
+    default:
+      break;
   }
 };

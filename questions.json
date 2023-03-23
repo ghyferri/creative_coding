@@ -91,10 +91,12 @@
          "nextQuestonIdNo": "20"
       },
       "18": {
-         "questionText": "Let’s clear our mind together"
+         "questionText": "Let’s clear our mind together",
+         "questionType": "purple"
       },
       "19": {
-         "questionText": "Together we will get even more energy"
+         "questionText": "Together we will get even more energy",
+         "questionType": "green"
       },
       "20": {
          "questionText": "Did you do something about it?",
@@ -102,7 +104,8 @@
          "nextQuestonIdNo": "21"
       },
       "21": {
-         "questionText": "Here is a hug"
+         "questionText": "Here is a hug",
+         "questionType": "yellow"
       }
    }
 }
