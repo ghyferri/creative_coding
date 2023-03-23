@@ -6,10 +6,13 @@ body {
 }
 .center {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  width: 100%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
 }
 
 .button {
@@ -21,6 +24,25 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+  margin: 4px 4em;
   cursor: pointer;
+  border-radius: 20px;
+}
+
+.row {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+#questionDisplay {
+  font-size: 2em;
 }
