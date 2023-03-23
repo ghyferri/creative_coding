@@ -46,3 +46,47 @@ const checkLastQuestion = (question) => {
       break;
   }
 };
+
+// This needs to point to the web socket in the Node-RED flow
+// ... in this case it's /simple
+var wsUri = 'ws://' + '192.168.100.1:1880' + '/ws';
+
+window.onload = () => {
+  wsConnect();
+};
+
+function wsConnect() {
+  console.log('connect', wsUri);
+  var ws = new WebSocket(wsUri);
+
+  ws.onmessage = function (msg) {
+    console.log(msg.data);
+    if (msg.data == 'yes') {
+      showNextQuestion(currentQuestion.nextQuestionIdYes);
+      checkLastQuestion(currentQuestion);
+    } else {
+      showNextQuestion(currentQuestion.nextQuestonIdNo);
+      checkLastQuestion(currentQuestion);
+    }
+  };
+
+  ws.onopen = function () {
+    console.log('Connected');
+  };
+
+  ws.onclose = function () {
+    // in case of lost connection tries to reconnect every 3 secs
+    setTimeout(wsConnect, 3000);
+  };
+
+  ws.disconnect = function () {
+    console.log('Disconnected');
+  };
+}
+
+function update() {
+  // now send the output over the websocket
+  if (ws) {
+    ws.send(output);
+  }
+}

@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="src/main.js"></script>
     <title>Breathing room</title>
   </head>
-  <body>
+  <body onload="wsConnect();" onunload="ws.disconnect();">
     <div class="center">
       <div class="column">
         <p id="questionDisplay"></p>
