@@ -10,22 +10,30 @@ const questionDisplay = document.querySelector('#questionDisplay');
 
 let currentQuestion = data.questions[0];
 questionDisplay.textContent = data.questions[0].questionText;
+let beat = new Audio('../videos/sound0.mp3');
+beat.play();
 
 button1.onclick = () => {
-  let beat = new Audio(currentQuestion.audioPath);
-  beat.play();
   showNextQuestion(currentQuestion.nextQuestionIdYes);
   checkLastQuestion(currentQuestion);
+  playAudio(currentQuestion);
 };
 
 button2.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestonIdNo);
   checkLastQuestion(currentQuestion);
+  playAudio(currentQuestion);
 };
 
 const showNextQuestion = (id) => {
   questionDisplay.textContent = data.questions[id].questionText;
   currentQuestion = data.questions[id];
+};
+
+const playAudio = (question) => {
+  beat.pause();
+  beat = new Audio(question.audioPath);
+  beat.play();
 };
 
 const checkLastQuestion = (question) => {
