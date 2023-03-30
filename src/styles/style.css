@@ -1,9 +1,17 @@
 html {
   height: 100%;
+  font-family: 'interstate', sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 body {
   min-height: 100%;
 }
+
+#info {
+  display: none;
+}
+
 .center {
   display: flex;
   flex-direction: column;
@@ -27,6 +35,9 @@ body {
   margin: 4px 4em;
   cursor: pointer;
   border-radius: 20px;
+}
+#button2 {
+  background-color: red;
 }
 
 .row {

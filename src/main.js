@@ -46,12 +46,15 @@ const checkLastQuestion = (question) => {
   switch (question.questionType) {
     case 'purple':
       new Purple();
+      playMusic('g7Xz48z3l8o');
       break;
     case 'green':
       new Green();
+      playMusic('pX_jySkFIK4');
       break;
     case 'yellow':
       new Orange();
+      playMusic('Ft-jZcf0Wb8');
     default:
       break;
   }
@@ -74,9 +77,11 @@ function wsConnect() {
     if (msg.data == 'yes') {
       showNextQuestion(currentQuestion.nextQuestionIdYes);
       checkLastQuestion(currentQuestion);
+      playAudio(currentQuestion);
     } else {
       showNextQuestion(currentQuestion.nextQuestonIdNo);
       checkLastQuestion(currentQuestion);
+      playAudio(currentQuestion);
     }
   };
 
@@ -99,4 +104,25 @@ function update() {
   if (ws) {
     ws.send(output);
   }
+}
+
+let info = document.getElementById('info');
+function playMusic(videoId) {
+  console.log('thi is fired');
+  let player = new YT.Player('player', {
+    videoId: videoId,
+    loop: true,
+    events: {
+      onReady: function (e) {
+        info.innerHTML = 'video is loaded';
+        e.target.playVideo();
+      },
+      onStateChange: function (event) {
+        if (event.data === 1) {
+          info.innerHTML = 'video started playing';
+        }
+      },
+    },
+  });
+  // you can do more stuff with the player variable
 }
