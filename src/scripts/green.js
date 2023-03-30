@@ -70,7 +70,3 @@ export default class Green {
     }
   }
 }
-
-window.onload = () => {
-  new App();
-};

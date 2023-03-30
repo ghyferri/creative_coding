@@ -75,7 +75,3 @@ export default class Orange {
     }
   }
 }
-
-window.onload = () => {
-  new App();
-};
