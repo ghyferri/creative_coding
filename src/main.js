@@ -1,7 +1,7 @@
 import './styles/reset.css';
 import './styles/style.css';
 import data from '../questions.json' assert { type: 'JSON' };
-
+import app from './scripts/purple.js';
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const body = document.querySelector('body');
@@ -40,6 +40,7 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
+    new app();
   }
   switch (question.questionType) {
     case 'purple':
