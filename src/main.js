@@ -1,11 +1,13 @@
 import './styles/reset.css';
 import './styles/style.css';
 import data from '../questions.json' assert { type: 'JSON' };
-import app from './scripts/purple.js';
+import Purple from './scripts/purple.js';
+import Orange from './scripts/orange.js';
+import Green from './scripts/green.js';
+
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const body = document.querySelector('body');
-
 const questionDisplay = document.querySelector('#questionDisplay');
 
 let currentQuestion = data.questions[0];
@@ -40,17 +42,17 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
-    new app();
+    questionDisplay.style.color = 'white';
   }
   switch (question.questionType) {
     case 'purple':
-      body.style.backgroundColor = 'purple';
+      new Purple();
       break;
     case 'green':
-      body.style.backgroundColor = 'green';
+      new Green();
       break;
     case 'yellow':
-      body.style.backgroundColor = 'yellow';
+      new Orange();
     default:
       break;
   }

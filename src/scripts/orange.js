@@ -2,14 +2,19 @@ import '../styles/particle.css';
 import { GlowParticle } from './glowparticle';
 
 const COLORS = [
-  { r: 149, g: 64, b: 181 }, //purple
-  { r: 45, g: 21, b: 87 }, //blue
-  { r: 158, g: 33, b: 124 }, //pink
-  //{r: 51, g: 117, b: 175}, //light blue
-  { r: 0, g: 30, b: 53 }, //dark purple
+  //{r: 198, g: 85, b: 36}, //dark orange
+  //{r: 213, g: 127, b: 89}, //middle orange
+  //{r: 188, g: 77, b: 2}, //brown/orange
+  //{r: 225, g: 176, b: 93}, //dark yellow
+
+  { r: 107, g: 25, b: 58 },
+  { r: 203, g: 42, b: 19 },
+  { r: 255, g: 149, b: 26 },
+  { r: 0, g: 30, b: 53 },
+  { r: 189, g: 44, b: 6 },
 ];
 
-export default class Purple {
+export default class Orange {
   constructor() {
     this.canvas = document.createElement('canvas');
     document.body.appendChild(this.canvas);
@@ -17,8 +22,8 @@ export default class Purple {
 
     this.totalPartciles = 100;
     this.particles = [];
-    this.maxRadius = 200;
-    this.minRadius = 50;
+    this.maxRadius = 300;
+    this.minRadius = 150;
 
     window.addEventListener('resize', this.resize.bind(this), false);
     this.resize();
@@ -70,3 +75,7 @@ export default class Purple {
     }
   }
 }
+
+window.onload = () => {
+  new App();
+};
