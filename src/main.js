@@ -7,6 +7,7 @@ import Green from './scripts/green.js';
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
+const body = document.querySelector('body');
 const questionDisplay = document.querySelector('#questionDisplay');
 
 let currentQuestion = data.questions[0];
@@ -45,14 +46,17 @@ const checkLastQuestion = (question) => {
   }
   switch (question.questionType) {
     case 'purple':
+      body.style.backgroundColor = 'blue';
       new Purple();
       playMusic('g7Xz48z3l8o');
       break;
     case 'green':
+      body.style.backgroundColor = 'blue';
       new Green();
       playMusic('pX_jySkFIK4');
       break;
     case 'yellow':
+      body.style.backgroundColor = '#bc4d02';
       new Orange();
       playMusic('Ft-jZcf0Wb8');
     default:
