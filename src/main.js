@@ -42,7 +42,7 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
-    questionDisplay.style.color = 'white';
+    body.style.background = 'transparent';
   }
   switch (question.questionType) {
     case 'purple':
