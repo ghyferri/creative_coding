@@ -48,7 +48,11 @@ const checkLastQuestion = (question) => {
     case 'purple':
       body.style.backgroundColor = 'blue';
       new Purple();
-      playMusic('g7Xz48z3l8o');
+      // playMusic('g7Xz48z3l8o');
+      setTimeout(function () {
+        questionDisplay.style.display = 'none';
+        new Audio('../videos/session1.mp3').play();
+      }, 3000);
       break;
     case 'green':
       body.style.backgroundColor = 'blue';
