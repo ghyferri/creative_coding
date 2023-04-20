@@ -15,6 +15,7 @@ const questionDisplay = document.querySelector('#questionDisplay');
 button1.style.display = 'none';
 button2.style.display = 'none';
 questionDisplay.style.display = 'none';
+let pushCounter = 0;
 
 let currentQuestion = data.questions[0];
 questionDisplay.textContent = data.questions[0].questionText;
@@ -22,6 +23,9 @@ let introBeat = new Audio('../videos/startmusic.mp3');
 let beat = new Audio('../videos/sound0.mp3');
 introBeat.play();
 startbutton.onclick = () => {
+  pushCounter++;
+  console.log(pushCounter);
+
   button1.style.display = 'block';
   button2.style.display = 'block';
   questionDisplay.style.display = 'block';
@@ -66,6 +70,8 @@ const checkLastQuestion = (question) => {
   switch (question.questionType) {
     case 'purple':
       body.style.backgroundColor = 'blue';
+      pushCounter = 0;
+
       let purple = new Purple();
       purple;
       // playMusic('g7Xz48z3l8o');
@@ -77,6 +83,7 @@ const checkLastQuestion = (question) => {
         purpleAudio.onended = () => {
           start.style.display = 'block';
           startbutton.style.display = ' block';
+          introBeat.play();
           currentQuestion = data.questions[0];
           body.style.backgroundColor = 'white';
           purple.canvas.remove();
@@ -111,16 +118,21 @@ function wsConnect() {
 
   ws.onmessage = function (msg) {
     console.log(msg.data);
-    if (msg.data == 'yes') {
-      showNextQuestion(currentQuestion.nextQuestionIdYes);
-      checkLastQuestion(currentQuestion);
-      playAudio(currentQuestion);
-    } else if ((msg.data = 'idk')) {
+    if (msg.data == 'idk') {
       start.style.display = 'none';
-    } else {
-      showNextQuestion(currentQuestion.nextQuestonIdNo);
-      checkLastQuestion(currentQuestion);
-      playAudio(currentQuestion);
+      pushCounter + 1;
+    }
+    console.log(pushCounter);
+    if (pushCounter != 0) {
+      if (msg.data == 'yes') {
+        showNextQuestion(currentQuestion.nextQuestionIdYes);
+        checkLastQuestion(currentQuestion);
+        playAudio(currentQuestion);
+      } else {
+        showNextQuestion(currentQuestion.nextQuestonIdNo);
+        checkLastQuestion(currentQuestion);
+        playAudio(currentQuestion);
+      }
     }
   };
 
