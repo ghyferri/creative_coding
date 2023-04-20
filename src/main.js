@@ -8,12 +8,28 @@ import Green from './scripts/green.js';
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const body = document.querySelector('body');
+const start = document.querySelector('#start');
+const startbutton = document.querySelector('#startbutton');
 const questionDisplay = document.querySelector('#questionDisplay');
+
+button1.style.display = 'none';
+button2.style.display = 'none';
+questionDisplay.style.display = 'none';
 
 let currentQuestion = data.questions[0];
 questionDisplay.textContent = data.questions[0].questionText;
+let introBeat = new Audio('../videos/startmusic.mp3');
 let beat = new Audio('../videos/sound0.mp3');
-beat.play();
+introBeat.play();
+startbutton.onclick = () => {
+  button1.style.display = 'block';
+  button2.style.display = 'block';
+  questionDisplay.style.display = 'block';
+  start.style.display = 'none';
+  startbutton.style.display = 'none';
+  introBeat.pause();
+  beat.play();
+};
 
 button1.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestionIdYes);
@@ -42,7 +58,8 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
-    // body.style.background = 'transparent';
+    questionDisplay.style.color = 'white';
+    body.style.background = 'white';
   }
   switch (question.questionType) {
     case 'purple':
@@ -50,7 +67,7 @@ const checkLastQuestion = (question) => {
       new Purple();
       // playMusic('g7Xz48z3l8o');
       setTimeout(function () {
-        questionDisplay.style.display = 'none';
+        questionDisplay.classList.add('hidden');
         new Audio('../videos/session1.mp3').play();
       }, 3000);
       break;
@@ -86,6 +103,8 @@ function wsConnect() {
       showNextQuestion(currentQuestion.nextQuestionIdYes);
       checkLastQuestion(currentQuestion);
       playAudio(currentQuestion);
+    } else if ((msg.data = 'idk')) {
+      start.style.display = 'none';
     } else {
       showNextQuestion(currentQuestion.nextQuestonIdNo);
       checkLastQuestion(currentQuestion);

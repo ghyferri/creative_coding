@@ -7,8 +7,17 @@
     <link rel="stylesheet" href="https://use.typekit.net/fml2ypo.css" />
     <title>Breathing room</title>
   </head>
+
   <body onload="wsConnect();" onunload="ws.disconnect();">
+    <video
+      src="./public/videos/video.mp4"
+      muted
+      autoplay
+      style="display: none"
+    ></video>
     <div class="center">
+      <p id="start" style="font-size: 2em">press 🟢 and 🔴 together to start</p>
+      <button id="startbutton">press to start</button>
       <div class="column">
         <p id="questionDisplay"></p>
       </div>
