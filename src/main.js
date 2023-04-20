@@ -9,6 +9,9 @@ const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const body = document.querySelector('body');
 const start = document.querySelector('#start');
+const imageLinksboven = document.querySelector('.imageLinksboven');
+const imageRechtsonder = document.querySelector('.imageRechtsonder');
+
 const startbutton = document.querySelector('#startbutton');
 const questionDisplay = document.querySelector('#questionDisplay');
 
@@ -25,12 +28,11 @@ introBeat.play();
 startbutton.onclick = () => {
   pushCounter++;
   console.log(pushCounter);
-
   button1.style.display = 'block';
   button2.style.display = 'block';
   questionDisplay.style.display = 'block';
   questionDisplay.classList.remove('hidden');
-  questionDisplay.style.color = 'black';
+  questionDisplay.style.color = 'e0c1ff';
   start.style.display = 'none';
   startbutton.style.display = 'none';
   introBeat.pause();
@@ -64,8 +66,10 @@ const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
     button2.style.display = 'none';
-    questionDisplay.style.color = 'white';
+    questionDisplay.style.color = 'e0c1ff';
     body.style.background = 'white';
+    imageLinksboven.style.display = 'none';
+    imageRechtsonder.style.display = 'none';
   }
   switch (question.questionType) {
     case 'purple':
@@ -74,7 +78,6 @@ const checkLastQuestion = (question) => {
 
       let purple = new Purple();
       purple;
-      // playMusic('g7Xz48z3l8o');
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
         let purpleAudio = new Audio('../videos/3sec.mp3');
@@ -85,8 +88,10 @@ const checkLastQuestion = (question) => {
           startbutton.style.display = ' block';
           introBeat.play();
           currentQuestion = data.questions[0];
-          body.style.backgroundColor = 'white';
+          body.style.backgroundColor = '#121557';
           purple.canvas.remove();
+          imageLinksboven.style.display = 'block';
+          imageRechtsonder.style.display = 'block';
         };
       }, 3000);
       break;
