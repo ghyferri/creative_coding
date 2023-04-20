@@ -75,8 +75,8 @@ body {
 }
 
 #start {
-  -webkit-animation: breathing 10s ease-out infinite normal;
-  animation: breathing 10s ease-out infinite normal;
+  -webkit-animation: breathing 7s ease-out infinite normal;
+  animation: breathing 7s ease-out infinite normal;
 
   -webkit-font-smoothing: antialiased;
 }

@@ -25,6 +25,8 @@ startbutton.onclick = () => {
   button1.style.display = 'block';
   button2.style.display = 'block';
   questionDisplay.style.display = 'block';
+  questionDisplay.classList.remove('hidden');
+  questionDisplay.style.color = 'black';
   start.style.display = 'none';
   startbutton.style.display = 'none';
   introBeat.pause();
@@ -64,11 +66,21 @@ const checkLastQuestion = (question) => {
   switch (question.questionType) {
     case 'purple':
       body.style.backgroundColor = 'blue';
-      new Purple();
+      let purple = new Purple();
+      purple;
       // playMusic('g7Xz48z3l8o');
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
-        new Audio('../videos/session1.mp3').play();
+        let purpleAudio = new Audio('../videos/3sec.mp3');
+        purpleAudio.play();
+        console.log(purpleAudio);
+        purpleAudio.onended = () => {
+          start.style.display = 'block';
+          startbutton.style.display = ' block';
+          currentQuestion = data.questions[0];
+          body.style.backgroundColor = 'white';
+          purple.canvas.remove();
+        };
       }, 3000);
       break;
     case 'green':
