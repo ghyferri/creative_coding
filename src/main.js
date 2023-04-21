@@ -19,18 +19,20 @@ button1.style.display = 'none';
 button2.style.display = 'none';
 questionDisplay.style.display = 'none';
 let pushCounter = 0;
-
 let currentQuestion = data.questions[0];
+
 questionDisplay.textContent = data.questions[0].questionText;
 let introBeat = new Audio('../videos/startmusic.mp3');
 let beat = new Audio('../videos/sound0.mp3');
 introBeat.play();
 startbutton.onclick = () => {
   pushCounter++;
-  console.log(pushCounter);
+  questionDisplay.textContent = data.questions[0].questionText;
+  currentQuestion = data.questions[0];
   button1.style.display = 'block';
   button2.style.display = 'block';
   questionDisplay.style.display = 'block';
+
   questionDisplay.classList.remove('hidden');
   questionDisplay.style.color = 'e0c1ff';
   start.style.display = 'none';
@@ -62,6 +64,18 @@ const playAudio = (question) => {
   beat.play();
 };
 
+const switchEverything = (canvas) => {
+  start.style.display = 'block';
+  startbutton.style.display = ' block';
+  introBeat.play();
+  currentQuestion = data.questions[0];
+  body.style.backgroundColor = '#121557';
+  canvas.canvas.remove();
+  imageLinksboven.style.display = 'block';
+  imageRechtsonder.style.display = 'block';
+  beat = new Audio('../videos/sound0.mp3');
+};
+
 const checkLastQuestion = (question) => {
   if (question.nextQuestionIdYes == undefined) {
     button1.style.display = 'none';
@@ -75,35 +89,44 @@ const checkLastQuestion = (question) => {
     case 'purple':
       body.style.backgroundColor = 'blue';
       pushCounter = 0;
-
       let purple = new Purple();
       purple;
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
-        let purpleAudio = new Audio('../videos/3sec.mp3');
+        let purpleAudio = new Audio('../videos/session1.mp3');
         purpleAudio.play();
-        console.log(purpleAudio);
         purpleAudio.onended = () => {
-          start.style.display = 'block';
-          startbutton.style.display = ' block';
-          introBeat.play();
-          currentQuestion = data.questions[0];
-          body.style.backgroundColor = '#121557';
-          purple.canvas.remove();
-          imageLinksboven.style.display = 'block';
-          imageRechtsonder.style.display = 'block';
+          switchEverything(purple);
         };
       }, 3000);
       break;
     case 'green':
       body.style.backgroundColor = 'blue';
-      new Green();
-      playMusic('pX_jySkFIK4');
+      pushCounter = 0;
+      let green = new Green();
+      green;
+      setTimeout(function () {
+        questionDisplay.classList.add('hidden');
+        let greenAudio = new Audio('../videos/session3.mp3');
+        greenAudio.play();
+        greenAudio.onended = () => {
+          switchEverything(green);
+        };
+      }, 3000);
       break;
     case 'yellow':
       body.style.backgroundColor = '#bc4d02';
-      new Orange();
-      playMusic('Ft-jZcf0Wb8');
+      pushCounter = 0;
+      let orange = new Orange();
+      orange;
+      setTimeout(function () {
+        questionDisplay.classList.add('hidden');
+        let orangeAudio = new Audio('../videos/session2.mp3');
+        orangeAudio.play();
+        orangeAudio.onended = () => {
+          switchEverything(orange);
+        };
+      }, 3000);
     default:
       break;
   }
