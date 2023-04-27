@@ -4,7 +4,7 @@ import data from '../questions.json' assert { type: 'JSON' };
 import Purple from './scripts/purple.js';
 import Orange from './scripts/orange.js';
 import Green from './scripts/green.js';
-import changeColor from './scripts/changeColor.js';
+import activateScene from './scripts/activateScene.js';
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
@@ -12,91 +12,48 @@ const body = document.querySelector('body');
 const start = document.querySelector('#start');
 const imageLinksboven = document.querySelector('.imageLinksboven');
 const imageRechtsonder = document.querySelector('.imageRechtsonder');
-const lightSettings = {
-  on: true,
-  sat: 254,
-  bri: 254,
-  hue: 10000,
-};
-
 const startbutton = document.querySelector('#startbutton');
 const questionDisplay = document.querySelector('#questionDisplay');
-
-const bridgeIpAddress = '192.168.1.202';
-const username = 'lGp4bicJLGIJF77JbhXf2kEuPxhVyznj6loMq5lw';
-const groupId = 2; // Replace with the ID of the group you want to control
-// Replace with the name of the scene you want to activate
-
-// Activate a scene with the specified name for the specified group
-async function activateScene(sceneId, groupId) {
-  const url = `http://${bridgeIpAddress}/api/${username}/groups/${groupId}/action`;
-
-  // Get the ID of the scene with the specified name
-  const scenesResponse = await fetch(
-    `http://${bridgeIpAddress}/api/${username}/scenes`,
-  );
-  const scenes = await scenesResponse.json();
-
-  // Set the group state to the specified scene
-  const sceneBody = {
-    scene: sceneId,
-    recycle: true,
-  };
-
-  const response = await fetch(url, {
-    method: 'PUT',
-    body: JSON.stringify(sceneBody),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  console.log(`Activated scene with ID: ${sceneId}`);
-}
-
+let started = false;
+activateScene('gEthoi9WREoF6xY');
 button1.style.display = 'none';
 button2.style.display = 'none';
 questionDisplay.style.display = 'none';
 let pushCounter = 0;
 let currentQuestion = data.questions[0];
+console.log(currentQuestion);
 
-questionDisplay.textContent = data.questions[0].questionText;
+// questionDisplay.textContent = data.questions[0].questionText;
 let introBeat = new Audio('../videos/startmusic.mp3');
 let beat = new Audio('../videos/sound0.mp3');
 introBeat.play();
-startbutton.onclick = () => {
-  pushCounter++;
-  questionDisplay.textContent = data.questions[0].questionText;
-  currentQuestion = data.questions[0];
-  button1.style.display = 'block';
-  button2.style.display = 'block';
-  questionDisplay.style.display = 'block';
+// startbutton.onclick = () => {
+//   pushCounter++;
+//   questionDisplay.textContent = data.questions[0].questionText;
+//   currentQuestion = data.questions[0];
+//   button1.style.display = 'block';
+//   button2.style.display = 'block';
+//   questionDisplay.style.display = 'block';
 
-  questionDisplay.classList.remove('hidden');
-  questionDisplay.style.color = 'e0c1ff';
-  start.style.display = 'none';
-  startbutton.style.display = 'none';
-  introBeat.pause();
-  beat.play();
-};
+//   questionDisplay.classList.remove('hidden');
+//   questionDisplay.style.color = 'e0c1ff';
+//   start.style.display = 'none';
+//   startbutton.style.display = 'none';
+//   introBeat.pause();
+//   beat.play();
+// };
 
 button1.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestionIdYes);
   checkLastQuestion(currentQuestion);
   playAudio(currentQuestion);
-  activateScene('gEthoi9WREoF6xY', groupId);
-  // changeColor(
-  //   '192.168.1.202',
-  //   'lGp4bicJLGIJF77JbhXf2kEuPxhVyznj6loMq5lw',
-  //   lightSettings,
-  // );
 };
 
 button2.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestonIdNo);
   checkLastQuestion(currentQuestion);
   playAudio(currentQuestion);
-  activateScene('mJwFJbfv5z6QQMI', groupId);
+  activateScene('mJwFJbfv5z6QQMI');
 };
 
 const showNextQuestion = (id) => {
@@ -130,19 +87,22 @@ const checkLastQuestion = (question) => {
     body.style.background = 'white';
     imageLinksboven.style.display = 'none';
     imageRechtsonder.style.display = 'none';
+    console.log(started + 'dit is checklast ');
   }
   switch (question.questionType) {
     case 'purple':
       body.style.backgroundColor = 'blue';
       pushCounter = 0;
       let purple = new Purple();
+      activateScene('H7fYKViWcHfyrb5');
       purple;
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
-        let purpleAudio = new Audio('../videos/session1.mp3');
+        let purpleAudio = new Audio('../videos/3sec.mp3');
         purpleAudio.play();
         purpleAudio.onended = () => {
           switchEverything(purple);
+          started = false;
         };
       }, 3000);
       break;
@@ -150,6 +110,7 @@ const checkLastQuestion = (question) => {
       body.style.backgroundColor = 'blue';
       pushCounter = 0;
       let green = new Green();
+      activateScene('mJwFJbfv5z6QQMI');
       green;
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
@@ -157,6 +118,7 @@ const checkLastQuestion = (question) => {
         greenAudio.play();
         greenAudio.onended = () => {
           switchEverything(green);
+          started = false;
         };
       }, 3000);
       break;
@@ -164,6 +126,7 @@ const checkLastQuestion = (question) => {
       body.style.backgroundColor = '#bc4d02';
       pushCounter = 0;
       let orange = new Orange();
+      activateScene('0ypa35dRcHjCm73');
       orange;
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
@@ -171,6 +134,7 @@ const checkLastQuestion = (question) => {
         orangeAudio.play();
         orangeAudio.onended = () => {
           switchEverything(orange);
+          started = false;
         };
       }, 3000);
     default:
@@ -189,23 +153,38 @@ window.onload = () => {
 function wsConnect() {
   console.log('connect', wsUri);
   var ws = new WebSocket(wsUri);
-
   ws.onmessage = function (msg) {
     console.log(msg.data);
-    if (msg.data == 'idk') {
+
+    if (msg.data == 'start' && started == false) {
+      started = true;
+      pushCounter++;
+      questionDisplay.textContent = data.questions[0].questionText;
+      console.log(questionDisplay);
+      currentQuestion = data.questions[0];
+      console.log(currentQuestion.questionText);
+
+      button1.style.display = 'block';
+      button2.style.display = 'block';
+      questionDisplay.style.display = 'block';
+      questionDisplay.classList.remove('hidden');
+      questionDisplay.style.color = 'e0c1ff';
       start.style.display = 'none';
-      pushCounter + 1;
+      introBeat.pause();
+      beat.play();
     }
-    console.log(pushCounter);
-    if (pushCounter != 0) {
-      if (msg.data == 'yes') {
-        showNextQuestion(currentQuestion.nextQuestionIdYes);
-        checkLastQuestion(currentQuestion);
-        playAudio(currentQuestion);
-      } else {
-        showNextQuestion(currentQuestion.nextQuestonIdNo);
-        checkLastQuestion(currentQuestion);
-        playAudio(currentQuestion);
+
+    if (started) {
+      if (pushCounter != 0) {
+        if (msg.data == 'yes') {
+          showNextQuestion(currentQuestion.nextQuestionIdYes);
+          checkLastQuestion(currentQuestion);
+          playAudio(currentQuestion);
+        } else {
+          showNextQuestion(currentQuestion.nextQuestonIdNo);
+          checkLastQuestion(currentQuestion);
+          playAudio(currentQuestion);
+        }
       }
     }
   };
@@ -229,25 +208,4 @@ function update() {
   if (ws) {
     ws.send(output);
   }
-}
-
-let info = document.getElementById('info');
-function playMusic(videoId) {
-  console.log('thi is fired');
-  let player = new YT.Player('player', {
-    videoId: videoId,
-    loop: true,
-    events: {
-      onReady: function (e) {
-        info.innerHTML = 'video is loaded';
-        e.target.playVideo();
-      },
-      onStateChange: function (event) {
-        if (event.data === 1) {
-          info.innerHTML = 'video started playing';
-        }
-      },
-    },
-  });
-  // you can do more stuff with the player variable
 }
