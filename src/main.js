@@ -4,6 +4,7 @@ import data from '../questions.json' assert { type: 'JSON' };
 import Purple from './scripts/purple.js';
 import Orange from './scripts/orange.js';
 import Green from './scripts/green.js';
+import changeColor from './scripts/changeColor.js';
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
@@ -11,9 +12,47 @@ const body = document.querySelector('body');
 const start = document.querySelector('#start');
 const imageLinksboven = document.querySelector('.imageLinksboven');
 const imageRechtsonder = document.querySelector('.imageRechtsonder');
+const lightSettings = {
+  on: true,
+  sat: 254,
+  bri: 254,
+  hue: 10000,
+};
 
 const startbutton = document.querySelector('#startbutton');
 const questionDisplay = document.querySelector('#questionDisplay');
+
+const bridgeIpAddress = '192.168.1.202';
+const username = 'lGp4bicJLGIJF77JbhXf2kEuPxhVyznj6loMq5lw';
+const groupId = 2; // Replace with the ID of the group you want to control
+// Replace with the name of the scene you want to activate
+
+// Activate a scene with the specified name for the specified group
+async function activateScene(sceneId, groupId) {
+  const url = `http://${bridgeIpAddress}/api/${username}/groups/${groupId}/action`;
+
+  // Get the ID of the scene with the specified name
+  const scenesResponse = await fetch(
+    `http://${bridgeIpAddress}/api/${username}/scenes`,
+  );
+  const scenes = await scenesResponse.json();
+
+  // Set the group state to the specified scene
+  const sceneBody = {
+    scene: sceneId,
+    recycle: true,
+  };
+
+  const response = await fetch(url, {
+    method: 'PUT',
+    body: JSON.stringify(sceneBody),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  console.log(`Activated scene with ID: ${sceneId}`);
+}
 
 button1.style.display = 'none';
 button2.style.display = 'none';
@@ -45,12 +84,19 @@ button1.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestionIdYes);
   checkLastQuestion(currentQuestion);
   playAudio(currentQuestion);
+  activateScene('gEthoi9WREoF6xY', groupId);
+  // changeColor(
+  //   '192.168.1.202',
+  //   'lGp4bicJLGIJF77JbhXf2kEuPxhVyznj6loMq5lw',
+  //   lightSettings,
+  // );
 };
 
 button2.onclick = () => {
   showNextQuestion(currentQuestion.nextQuestonIdNo);
   checkLastQuestion(currentQuestion);
   playAudio(currentQuestion);
+  activateScene('mJwFJbfv5z6QQMI', groupId);
 };
 
 const showNextQuestion = (id) => {
