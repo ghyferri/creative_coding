@@ -12,7 +12,7 @@ const body = document.querySelector('body');
 const start = document.querySelector('#start');
 const imageLinksboven = document.querySelector('.imageLinksboven');
 const imageRechtsonder = document.querySelector('.imageRechtsonder');
-const startbutton = document.querySelector('#startbutton');
+// const startbutton = document.querySelector('#startbutton');
 const questionDisplay = document.querySelector('#questionDisplay');
 let started = false;
 activateScene('gEthoi9WREoF6xY');
@@ -21,16 +21,16 @@ button2.style.display = 'none';
 questionDisplay.style.display = 'none';
 let pushCounter = 0;
 let currentQuestion = data.questions[0];
-console.log(currentQuestion);
-
-// questionDisplay.textContent = data.questions[0].questionText;
+questionDisplay.textContent = data.questions[0].questionText;
 let introBeat = new Audio('../videos/startmusic.mp3');
 let beat = new Audio('../videos/sound0.mp3');
 introBeat.play();
+// ** THIS IS CODE FOR TESTING WITHOUT BUTTONS
 // startbutton.onclick = () => {
 //   pushCounter++;
 //   questionDisplay.textContent = data.questions[0].questionText;
 //   currentQuestion = data.questions[0];
+//   console.log(currentQuestion);
 //   button1.style.display = 'block';
 //   button2.style.display = 'block';
 //   questionDisplay.style.display = 'block';
@@ -43,18 +43,18 @@ introBeat.play();
 //   beat.play();
 // };
 
-button1.onclick = () => {
-  showNextQuestion(currentQuestion.nextQuestionIdYes);
-  checkLastQuestion(currentQuestion);
-  playAudio(currentQuestion);
-};
+// button1.onclick = () => {
+//   showNextQuestion(currentQuestion.nextQuestionIdYes);
+//   checkLastQuestion(currentQuestion);
+//   playAudio(currentQuestion);
+// };
 
-button2.onclick = () => {
-  showNextQuestion(currentQuestion.nextQuestonIdNo);
-  checkLastQuestion(currentQuestion);
-  playAudio(currentQuestion);
-  activateScene('mJwFJbfv5z6QQMI');
-};
+// button2.onclick = () => {
+//   showNextQuestion(currentQuestion.nextQuestonIdNo);
+//   checkLastQuestion(currentQuestion);
+//   playAudio(currentQuestion);
+//   activateScene('mJwFJbfv5z6QQMI');
+// };
 
 const showNextQuestion = (id) => {
   questionDisplay.textContent = data.questions[id].questionText;
@@ -69,7 +69,7 @@ const playAudio = (question) => {
 
 const switchEverything = (canvas) => {
   start.style.display = 'block';
-  startbutton.style.display = ' block';
+  // startbutton.style.display = ' block';
   introBeat.play();
   currentQuestion = data.questions[0];
   body.style.backgroundColor = '#121557';
@@ -87,7 +87,6 @@ const checkLastQuestion = (question) => {
     body.style.background = 'white';
     imageLinksboven.style.display = 'none';
     imageRechtsonder.style.display = 'none';
-    console.log(started + 'dit is checklast ');
   }
   switch (question.questionType) {
     case 'purple':
@@ -98,7 +97,7 @@ const checkLastQuestion = (question) => {
       purple;
       setTimeout(function () {
         questionDisplay.classList.add('hidden');
-        let purpleAudio = new Audio('../videos/3sec.mp3');
+        let purpleAudio = new Audio('../videos/session1.mp3');
         purpleAudio.play();
         purpleAudio.onended = () => {
           switchEverything(purple);
@@ -143,11 +142,11 @@ const checkLastQuestion = (question) => {
 };
 
 // This needs to point to the web socket in the Node-RED flow
-// ... in this case it's /simple
 var wsUri = 'ws://' + '192.168.100.1:1880' + '/ws';
 
 window.onload = () => {
   wsConnect();
+  currentQuestion = data.questions[0];
 };
 
 function wsConnect() {
@@ -155,15 +154,11 @@ function wsConnect() {
   var ws = new WebSocket(wsUri);
   ws.onmessage = function (msg) {
     console.log(msg.data);
-
     if (msg.data == 'start' && started == false) {
       started = true;
       pushCounter++;
-      questionDisplay.textContent = data.questions[0].questionText;
-      console.log(questionDisplay);
       currentQuestion = data.questions[0];
-      console.log(currentQuestion.questionText);
-
+      questionDisplay.textContent = currentQuestion.questionText;
       button1.style.display = 'block';
       button2.style.display = 'block';
       questionDisplay.style.display = 'block';
@@ -180,7 +175,7 @@ function wsConnect() {
           showNextQuestion(currentQuestion.nextQuestionIdYes);
           checkLastQuestion(currentQuestion);
           playAudio(currentQuestion);
-        } else {
+        } else if (msg.data == 'no') {
           showNextQuestion(currentQuestion.nextQuestonIdNo);
           checkLastQuestion(currentQuestion);
           playAudio(currentQuestion);
