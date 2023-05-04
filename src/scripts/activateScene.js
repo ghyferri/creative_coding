@@ -15,6 +15,7 @@ export default async function activateScene(sceneId) {
   const sceneBody = {
     scene: sceneId,
     recycle: true,
+    brightness: 254,
   };
 
   const response = await fetch(url, {
