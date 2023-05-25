@@ -52,10 +52,37 @@ Run the project
 
 > npm run dev
 
+## :house: How it's build
 
+### Box for buttons 
 
+To make The Breathing Room interactive, we worked with push buttons. You answer questions using green and red push buttons. To present these buttons nicely without visible cables, we designed a box.
 
+This box was made with a laser cutter. We used wood with a thickness of 6 mm for the box. We made the plan to cut out the box via makercase.com. This is a handy tool to enter your dimensions and get a plan in place. You can download the cut-out after you have entered everything. 
 
+We download an svg file. We updated this file in Illustrator to add extra holes so that our cables could come out of the box and our push buttons could fit in.
+
+<img width="720" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/67973004-4714-421b-b963-6a67f33a52b7">
+
+The box consists of 5 panels. At the back, we have a small hole for the cables. At the top we have two holes to insert our push buttons. Tip: measure in advance how far apart the buttons should be. We made a mistake here at first. We used push buttons of 10 cm in size. 
+
+To have this file read by the laser cutter, we need to save it as a dxf. You save it on a usb stick and upload it to the laser cutter.
+
+The result is our 5 panels. This is what it looks like when assembled:
+
+<img width="298" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/43a08edb-ba87-468d-9917-55bc7b22a007">
+
+Since the box now looks bare and conspicuous, we made stickers. We used the same dimensions of the panels. The stickers were formatted in Adobe Illustrator. The right document for the printer is a pdf document. It is very important that your cut lines are in another layer. This layer should have a certain name (e.g. CutContour) and the 100% magenta. Below you can see our result.
+
+<img width="377" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/cf6f1036-2a54-40a8-82f5-5136ce3a26ef">
+
+To attach the push buttons to the box, you unscrew the bottom wheel of the button. You put the button through the hole and screw the wheel back on. This secures the buttons to the shelf (box).
+
+HOW TO CONNECT THE BUTTONS TO RASPBERRY?
+
+The plus, minus and zero cables were connected on the Raspberry (see above). On the other side of the cables hang the buttons. The cables were soldered to the plus, minus and zero ports on the buttons.
+
+<img width="720" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/fdf4cac3-6153-4608-95fb-00c858ff0e8a">
 
 ## 📝 Related posts
 
