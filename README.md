@@ -78,8 +78,6 @@ Since the box now looks bare and conspicuous, we made stickers. We used the same
 
 To attach the push buttons to the box, you unscrew the bottom wheel of the button. You put the button through the hole and screw the wheel back on. This secures the buttons to the shelf (box).
 
-HOW TO CONNECT THE BUTTONS TO RASPBERRY?
-
 The plus, minus and zero cables were connected on the Raspberry (see above). On the other side of the cables hang the buttons. The cables were soldered to the plus, minus and zero ports on the buttons.
 
 <img width="720" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/fdf4cac3-6153-4608-95fb-00c858ff0e8a">
@@ -167,9 +165,95 @@ const checkLastQuestion = (question) => {
 
 ### Connection with Raspberry Pi 🍓
 
-Om de connectie te maken
+To establish a connection with the Raspberry Pi, we need to establish it in the code by initiating the connection in the body of the HTML.
 
+When working with a Raspberry Pi, establishing a connection is crucial for various applications. By setting up a connection in the HTML code, we enable communication between the web interface and the Raspberry Pi device. This allows us to control and monitor the Pi remotely.
 
+```
+<body onload="wsConnect();" onunload="ws.disconnect();">
+```
+
+Next, a connection is established with the WebSocket of the Raspberry Pi, which is configured in Node-RED.
+
+Node-RED is a popular flow-based programming tool that allows users to visually create applications by connecting nodes together. It provides a browser-based interface for wiring together various nodes, including nodes for handling WebSocket communication.
+
+To connect to the WebSocket of the Raspberry Pi, we typically set up a WebSocket node in Node-RED. This node acts as a server, listening for incoming connections and facilitating communication with connected clients.
+```
+// This needs to point to the web socket in the Node-RED flow
+var wsUri = 'ws://' + '192.168.100.1:1880' + '/ws';
+
+window.onload = () => {
+  wsConnect();
+};
+```
+
+Once the connection is established, we can send various messages to the server. This is done using the buttons on the box, which are directly connected to the Raspberry Pi. As shown in the diagram, the pin wires of the buttons are connected to the Raspberry Pi.
+The buttons serve as inputs for triggering actions or sending specific commands to the Raspberry Pi.
+
+![DSC03921](https://github.com/ghyferri/creative_coding/assets/127089375/3424fb6c-6aeb-49b0-a6d4-5bf3dc379e43)
+
+When a message is received, it triggers the execution of specific code based on the message content. Depending on the nature of the message, different actions or functionalities can be performed on the Raspberry Pi.
+
+Upon receiving a message from the server, the Raspberry Pi needs to interpret and process the message to determine the appropriate response. This can involve parsing the message content, extracting relevant information, and deciding which code or logic to execute.
+
+```
+function wsConnect() {
+  console.log('connect', wsUri);
+  var ws = new WebSocket(wsUri);
+  ws.onmessage = function (msg) {
+    console.log(msg.data);
+    if (msg.data == 'start' && started == false) {
+      started = true;
+      pushCounter++;
+      currentQuestion = data.questions[0];
+      questionDisplay.textContent = currentQuestion.questionText;
+      button1.style.display = 'block';
+      button2.style.display = 'block';
+      questionDisplay.style.display = 'block';
+      questionDisplay.classList.remove('hidden');
+      questionDisplay.style.color = 'e0c1ff';
+      start.style.display = 'none';
+      introBeat.pause();
+      beat.play();
+    }
+
+    if (started) {
+      if (pushCounter != 0) {
+        if (msg.data == 'yes') {
+          showNextQuestion(currentQuestion.nextQuestionIdYes);
+          checkLastQuestion(currentQuestion);
+          playAudio(currentQuestion);
+        } else if (msg.data == 'no') {
+          showNextQuestion(currentQuestion.nextQuestonIdNo);
+          checkLastQuestion(currentQuestion);
+          playAudio(currentQuestion);
+        }
+      }
+    }
+  };
+
+  ws.onopen = function () {
+    console.log('Connected');
+  };
+
+  ws.onclose = function () {
+    // in case of lost connection tries to reconnect every 3 secs
+    setTimeout(wsConnect, 3000);
+  };
+
+  ws.disconnect = function () {
+    console.log('Disconnected');
+  };
+}
+
+function update() {
+  // now send the output over the websocket
+  if (ws) {
+    ws.send(output);
+  }
+}
+
+```
 ### Lights 💡
 
 To make connection with the Phillips Hue Bulbs, I've used a brigde to establish a connection.
