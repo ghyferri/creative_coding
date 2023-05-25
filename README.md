@@ -167,6 +167,7 @@ const checkLastQuestion = (question) => {
 
 ### Connection with Raspberry Pi 🍓
 
+Om de connectie te maken
 
 
 ### Lights 💡
@@ -235,8 +236,5 @@ Finally, the response with the body is sent back to the lamps to activate them.
 
 - [How to install Raspberry PI] (https://github.com/meeplemaker/idl4-cc-rpi-install)
 - [How to program the Phillips Hue Bulbs] (https://developers.meethue.com/develop/get-started-2/)
-
-
-💬 If you have any question/feedback, please do not hesitate to reach out to us!
 
 
