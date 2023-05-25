@@ -84,6 +84,32 @@ The plus, minus and zero cables were connected on the Raspberry (see above). On 
 
 <img width="720" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/fdf4cac3-6153-4608-95fb-00c858ff0e8a">
 
+### Door hanger 
+
+We also used the laser cutter to make a door hanger. The door hanger is important when installing to be alone in the room. For the door hanger, we used 4mm wood thickness. And for the door hanger too, we designed sticker. In the same way as the previous one.
+
+![image](https://github.com/ghyferri/creative_coding/assets/127089375/0c6f4b15-4d8a-42a3-8908-e86aae6beaed)
+
+<img width="720" alt="image" src="https://github.com/ghyferri/creative_coding/assets/127089375/544593f0-9646-4408-8b54-893c160d2b10">
+
+### Stickers
+
+To present our installation as a beautiful whole, we designed stickers. Visitors could take these stickers with them after visiting our installation. 
+
+The stickers were created in the same way as the other stickers in Adobe Illustrator. In your Illustrator file, you create two layers. An artwork layer and a Cutcontour (= cutting line). The cut contour has a 100% magenta colour.
+
+![image](https://github.com/ghyferri/creative_coding/assets/127089375/30c01ad7-d836-40cd-b687-36fe0eaf1ed4)
+![image](https://github.com/ghyferri/creative_coding/assets/127089375/c1143c72-d77c-480f-b336-d66e9298af1a)
+
+### Lights
+
+To make the installation space cosy, we used Phillips Hue lamps. The lights are set to change colour depending on the visuals on the screen. 
+
+At the installation, there are 3 different sessions. That is, 3 different visuals. These sessions have different audio and different colours. The Phillips Hue lamps adjust to the colours of your session. Your session starts only when you have answered the questions with the push buttons.
+
+![image](https://github.com/ghyferri/creative_coding/assets/127089375/0b4c92d7-ca3a-4da2-bd19-e025aa21b458)
+
+
 ## 📝 Related posts
 
 - [How to install Raspberry PI] (https://github.com/meeplemaker/idl4-cc-rpi-install)
