@@ -109,10 +109,132 @@ At the installation, there are 3 different sessions. That is, 3 different visual
 
 ![image](https://github.com/ghyferri/creative_coding/assets/127089375/0b4c92d7-ca3a-4da2-bd19-e025aa21b458)
 
+## :computer: How everything is coded 
+
+### The Questions ❔
+
+The sessions start with a list of questions, which are pre-designed and formed in a branching structure. Based on the answers, you end up with a result, which is a tailor-made session. There are 3 types of sessions:
+
+- Nature-based (fresh air, movement, healthy eating, ...)
+
+- Relaxation
+
+- Emotions
+
+Below you can see the branching structure.
+
+![image](https://github.com/ghyferri/creative_coding/assets/127089375/5cf736ec-ee50-433c-8f4e-e0c6b8b9d1cf)
+
+These are converted to a JSON file, you can find this in questions.json
+The questions have unique identifiers to establish the order, and each question is associated with two identifiers. This allows for answering the subsequent question in the branching structure.
+
+```
+"questions": {
+    "0": {
+      "questionText": "Do you have a lot of worries on your mind?",
+      "nextQuestionIdYes": "1",
+      "nextQuestonIdNo": "2",
+      "audioPath": "../public/videos/sound0.mp3"
+    },
+    ...
+   }
+```
+
+This is how it is imported
+
+`import data from '../questions.json' assert { type: 'JSON' };
+`
+
+The next questions depends on the input of the user. This will be decided by the ID.
+
+```
+const showNextQuestion = (id) => {
+  questionDisplay.textContent = data.questions[id].questionText;
+  currentQuestion = data.questions[id];
+};
+```
+
+The last question is checked to see if the next ID of the subsequent questions is undefined. This indicates that there are no more questions, making it the final question in the sequence.
+
+The branching structure follows this logic to determine the flow of the session, ensuring that all questions are appropriately connected and that the session can be tailored based on the user's responses.
+
+```
+const checkLastQuestion = (question) => {
+  if (question.nextQuestionIdYes == undefined) {
+      ...
+  }
+```
+
+### Connection with Raspberry Pi 🍓
+
+
+
+### Lights 💡
+
+To make connection with the Phillips Hue Bulbs, I've used a brigde to establish a connection.
+
+To program Philips Hue lamps with a bridge, you can follow these steps:
+
+1. Connect the Philips Hue bridge to your router using an Ethernet cable and ensure that the bridge is powered on.
+2. Download and install the Philips Hue app on your smartphone or tablet. The app is available for both iOS and Android devices.
+3. Make sure your smartphone or tablet is connected to the same Wi-Fi network as the Philips Hue bridge.
+4. Open the Philips Hue app and follow the instructions to create an account or log in.
+5. Once you're logged in, the app will automatically try to detect your Philips Hue bridge. Follow the on-screen instructions to add the bridge to your Hue system.
+6. After the bridge is added, you can start adding your Philips Hue lamps to the system. Make sure the lamps are powered on and do not turn off the power during the configuration process.
+7. In the app, you can use the "Add" or "Add Light" function to individually detect and add the lamps to your Hue system. Follow the instructions in the app to pair the lamps.
+8. Once the lamps are added, you can customize various features and settings in the app. This includes adjusting brightness, setting timers, creating scenes, and creating routines for automated lighting.
+
+To check the connection, you should follow the steps provided on the <a href="https://developers.meethue.com/develop/get-started-2/" target="_blank" rel="noreferrer">developer website</a> of Hue. They alsof show how you can make use of their debugger.
+
+The logica om verbinding te maken met de lampen en deze te besturen bevind zich in de activateScene.js. 
+Eerst wordt er een connectie gemaakt naar de brigde om informatie (ID) van de lampen en scene op te halen 
+
+```
+export default async function activateScene(sceneId) {
+  const url = `http://${bridgeIpAddress}/api/${username}/groups/${groupId}/action`;
+
+  // Get the ID of the scene with the specified name
+  const scenesResponse = await fetch(
+    `http://${bridgeIpAddress}/api/${username}/scenes`,
+  );
+  ...
+ }
+```
+
+Next, a scene is created based on the result of the questionnaire. Each session has its own unique scene that is tailored to the user's responses.
+
+Creating a scene involves configuring specific lighting settings for the Philips Hue lamps. This can include adjusting the brightness, color, and even the positioning of the lights to create the desired ambiance. You can make use of the app to adjust these settings.
+
+```
+  // Set the group state to the specified scene
+  const sceneBody = {
+    scene: sceneId,
+    recycle: true,
+    brightness: 254,
+  };
+```
+
+```
+ case 'green':
+      activateScene('mJwFJbfv5z6QQMI');
+```
+
+Finally, the response with the body is sent back to the lamps to activate them.
+
+```
+  const response = await fetch(url, {
+    method: 'PUT',
+    body: JSON.stringify(sceneBody),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+```
 
 ## 📝 Related posts
 
 - [How to install Raspberry PI] (https://github.com/meeplemaker/idl4-cc-rpi-install)
+- [How to program the Phillips Hue Bulbs] (https://developers.meethue.com/develop/get-started-2/)
 
 
 💬 If you have any question/feedback, please do not hesitate to reach out to us!
