@@ -30,26 +30,38 @@ So why not take a few minutes out of your day to visit the Breathing Room and gi
 ![](https://img.shields.io/badge/Tools-Git-informational?style=flat&logo=Git&color=F05032)
 ![](https://img.shields.io/badge/Tools-GitHub-informational?style=flat&logo=GitHub&color=181717)
 
-## 🔭 The scope
-- My old projects
-- Restaurant Recommendation App (React-Native)
-- Mobile + Desktop Spotify Clone (Working on it soon...)
-- My next blog
-- My CSS skill
+## :hammer_and_wrench: Requirements
+- Phillips Hue lights
+- Hue Bridge
+- 2 buttons 
+- Raspberry Pi
+- HDMI Cable
+- Pin Cable
 
-## 🌱 I'm currently learning
+## 🌱 Install and run
 
-- 📱 React Native
-- Firebase
-- React Context API
-- Styled Components  
+To install and run the project, follow these steps:
+
+Download or clone the project locally
+
+Install node.js in the project
+
+> npm install
+
+Run the project 
+
+> npm run dev
 
 
 
 
 
--
 
-- 💬 If you have any question/feedback, please do not hesitate to reach out to us!
+## 📝 Related posts
+
+- [How to install Raspberry PI] (https://github.com/meeplemaker/idl4-cc-rpi-install)
+
+
+💬 If you have any question/feedback, please do not hesitate to reach out to us!
 
 
