@@ -322,7 +322,8 @@ Finally, the response with the body is sent back to the lamps to activate them.
 - [How to program the Phillips Hue Bulbs] (https://developers.meethue.com/develop/get-started-2/)
 
 
+https://github.com/ghyferri/creative_coding/assets/127089375/0e2ff1d4-2e4f-48de-a23d-469c23529099
 
-https://github.com/ghyferri/creative_coding/assets/127089375/570a7746-d702-4ddd-b13b-f8fed48c013a
+
 
 
